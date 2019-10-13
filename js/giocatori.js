@@ -124,8 +124,8 @@ function creaGiocatore(apiUsername) {
         giocatori[username].turni[i].match = 0;
         giocatori[username].turni[i].girone = 0;
         giocatori[username].turni[i].puntiSpareggio = 0;
-        giocatori[username].turni[i].posizione = 0;
         giocatori[username].turni[i].posizioneGruppo = 0;
+        giocatori[username].turni[i].qualificato = 0;
         giocatori[username].turni[i].vinte = 0;
         giocatori[username].turni[i].perse = 0;
         giocatori[username].turni[i].patte = 0;

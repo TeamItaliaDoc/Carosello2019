@@ -1,15 +1,24 @@
 ﻿var giorni = ["01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31"];
 var calcolaClassificaRun = false;
-var nTerziQualificati = 0;
+var nQualificati = 0;
 
 var matchs = [];
-matchs[101] = {"turno":1, "girone":1, "nome":"il-carosello-1deg-turno-girone-1", "daCaricare":true, "stampaPosizione" : 0};
+/*matchs[101] = {"turno":1, "girone":1, "nome":"il-carosello-1deg-turno-girone-1", "daCaricare":true, "stampaPosizione" : 0};
 matchs[102] = {"turno":1, "girone":2, "nome":"il-carosello-1deg-turno-girone-2", "daCaricare":true, "stampaPosizione" : 0};
 matchs[103] = {"turno":1, "girone":3, "nome":"il-carosello-1deg-turno-girone-3", "daCaricare":true, "stampaPosizione" : 0};
 matchs[104] = {"turno":1, "girone":4, "nome":"il-carosello-1deg-turno-girone-4", "daCaricare":true, "stampaPosizione" : 0};
 matchs[105] = {"turno":1, "girone":5, "nome":"il-carosello-1deg-turno-girone-5", "daCaricare":true, "stampaPosizione" : 0};
 matchs[106] = {"turno":1, "girone":6, "nome":"il-carosello-1deg-turno-girone-6", "daCaricare":true, "stampaPosizione" : 0};
-var maxPrimiGirone1 = 7;   //E' il numero dei gironi + 1
+*/
+
+matchs[101] = {"turno":1, "girone":1, "nome":"il-calvario-stazione-n-1-gruppo-1", "daCaricare":true, "stampaPosizione" : 0};
+matchs[102] = {"turno":1, "girone":2, "nome":"il-calvario-stazione-n-1-gruppo-3", "daCaricare":true, "stampaPosizione" : 0};
+matchs[103] = {"turno":1, "girone":3, "nome":"il-calvario-stazione-n-1-gruppo-4", "daCaricare":true, "stampaPosizione" : 0};
+matchs[104] = {"turno":1, "girone":4, "nome":"il-calvario-stazione-n-1-gruppo-5", "daCaricare":true, "stampaPosizione" : 0};
+matchs[105] = {"turno":1, "girone":5, "nome":"il-calvario-stazione-n-1-gruppo-6", "daCaricare":true, "stampaPosizione" : 0};
+matchs[106] = {"turno":1, "girone":6, "nome":"il-calvario-stazione-n-1-gruppo-7", "daCaricare":true, "stampaPosizione" : 0};
+
+var maxGirone1 = 6;   //E' il numero dei gironi 
 
 //-------- DATA FINE TURNO ----
 //-------- DATA FINE TURNO ----
@@ -20,10 +29,9 @@ var maxPrimiGirone1 = 7;   //E' il numero dei gironi + 1
 
 function elabora() {
     //Carico i dati di tutti i match
-    var url = '';
     for (var i in matchs) {
-        url = 'https://api.chess.com/pub/tournament/' + matchs[i].nome + '/1/1';
-        caricaMatch(url);
+        matchs[i].url = 'https://api.chess.com/pub/tournament/' + matchs[i].nome + '/1/1'
+        caricaMatch(matchs[i].url);
     };
 }
 
@@ -35,7 +43,7 @@ function caricaMatch(url)
         //Cerco match elaborato
         var iMatch = 0
         for (var i in matchs) {
-            if (this.url.indexOf(matchs[i].nome) > 0 && matchs[i].daCaricare)
+            if (this.url == matchs[i].url && matchs[i].daCaricare)
             iMatch = i;
         }        
 
@@ -97,7 +105,7 @@ function caricaMatch(url)
         //Se responseJSON non è valorizzato solo se il record esiste    
         var index = 0;
         for (var i in matchs) {
-            if (matchs[i].url = this.url)
+            if (matchs[i].url == this.url)
                 index = i;
         };
         if (! jqXhr.responseJSON)
@@ -188,29 +196,24 @@ function calcolaClassificaTurno3()
 
 function calcolaClassificaTurno1()
 {   
+
     var username = '';
     var max = 0;
     var maxSpareggio = 0;
     var posizione = 0;
     var nPareggi = 0;
     var oldMax = 0;
-    var oldSpareggio = 0;
-
-    var iPrimiGirone = 1;
-    var iPrimi = 1;
+    var oldSpareggio = -1;  //Per evitare problemi se sono tutti a zero
+    var iGirone = 1;
   
-    //Imposto posizione e salvo
+    //Imposto posizione nel gruppo e salvo
     while (max > -1)
     {
         max = -1;
         maxSpareggio = -1;
         for (var i in giocatori)
         {
-            //Se definito stampo prima i primi due del girone
-            if (iPrimiGirone < maxPrimiGirone1 && giocatori[i].turni[1].girone != iPrimiGirone)
-                continue;
-
-            if ((giocatori[i].turni[1].posizione == 0) && (giocatori[i].turni[1].punti > max || (giocatori[i].turni[1].punti == max) && giocatori[i].turni[1].puntiSpareggio > maxSpareggio)) {
+            if ((giocatori[i].turni[1].girone == iGirone & giocatori[i].turni[1].posizioneGruppo == 0) & (giocatori[i].turni[1].punti > max || (giocatori[i].turni[1].punti == max) && giocatori[i].turni[1].puntiSpareggio > maxSpareggio)) {
                 username = i;
                 max = giocatori[i].turni[1].punti;
                 maxSpareggio = giocatori[i].turni[1].puntiSpareggio;
@@ -228,54 +231,145 @@ function calcolaClassificaTurno1()
                 oldMax = max;
                 oldSpareggio = maxSpareggio;
             }    
-            
-            giocatori[username].turni[1].posizione = posizione;
-            //Salvo posizione nel gruppo
-            matchs[giocatori[username].turni[1].match].stampaPosizione ++;
-            giocatori[username].turni[1].posizioneGruppo = matchs[giocatori[username].turni[1].match].stampaPosizione;
-            
-            
-            //Stampo il giocatore
-            stampaGiocatoreTurno1(username);
 
-            //Aggiorno se sto stampando i primi
-            if (iPrimiGirone < maxPrimiGirone1) {
-                //Calcolo successivo
-                if (iPrimi == 1) {
-                   iPrimi = 2;
-                } else {
-                   iPrimi = 1;
-                   iPrimiGirone++;
-                }
-           }
-            
+            //I primi due sono sempre qualificati
+            if (posizione < 3) {
+                giocatori[username].turni[1].qualificato = 1;
+                nQualificati ++;
+            }
+            //Salvo posizione nel gruppo
+            giocatori[username].turni[1].posizioneGruppo = posizione;
+        } else {
+            //Finito il calcolo di un girono
+            if (iGirone < maxGirone1) {
+                iGirone++;
+                max = 0; //Devo calcolare girone successivo
+                maxSpareggio = 0;
+                posizione = 0;
+                nPareggi = 0;
+                oldMax = 0;
+                oldSpareggio = -1;  //Per evitare problemi se sono tutti a zero
+            }
+
         }
     }
-   
-     //Calcolo e stampo la classifica dei giocatori
+    
+    //Calcolo migliori dei terzi
+    username = '';
+    max = 0;
+    maxSpareggio = 0;
+    posizione = 0;
+    nPareggi = 0;
+    oldMax = 0;
+    oldSpareggio = -1;  //Per evitare problemi se sono tutti a zero
+    iGirone = 1;
+    var maxQualificati = 0;
+    var maxQualificatiSpareggio = 0;
+    while (max > -1)
+    {
+        max = -1;
+        maxSpareggio = -1;
+        for (var i in giocatori)
+        {
+            if ((giocatori[i].turni[1].qualificato == 0) && (giocatori[i].turni[1].punti > max || (giocatori[i].turni[1].punti == max) && giocatori[i].turni[1].puntiSpareggio > maxSpareggio)) {
+                username = i;
+                max = giocatori[i].turni[1].punti;
+                maxSpareggio = giocatori[i].turni[1].puntiSpareggio;
+            }
+        }
+        if (max > -1) 
+        {
+            if (oldMax == max && oldSpareggio == maxSpareggio )
+            {
+                nPareggi++;
+            } else {
+                posizione++;
+                posizione += nPareggi;
+                nPareggi = 0;
+                oldMax = max;
+                oldSpareggio = maxSpareggio;
+            }    
+
+            //I primi due sono sempre qualificati
+//            if (nQualificati < 16 || (maxQualificati == max & maxQualificatiSpareggio == maxSpareggio)) {
+            if (nQualificati < 16) {
+                giocatori[username].turni[1].qualificato = 2;
+                nQualificati++;
+                maxQualificati = max;
+                maxQualificatiSpareggio = maxSpareggio;
+            } else {
+                giocatori[username].turni[1].qualificato = 3;
+            }
+
+        } else {
+            //Finito il calcolo di un girono
+            if (iGirone < maxGirone1) {
+                iGirone++;
+                max = 0; //Devo calcolare girone successivo
+                maxSpareggio = 0;
+                posizione = 0;
+                nPareggi = 0;
+                oldMax = 0;
+                oldSpareggio = -1;  //Per evitare problemi se sono tutti a zero
+            }
+
+        }
+    }
+
+    //Stampo
+    max = 999;
+    username = '';
+    posizione = 0;
+    iGirone = 1;
+    while (max < 1000)
+    {
+        //Stampo il girone
+        if (max == 999) {
+            $("#turno1").append('<tr><td><a style="font-weight: bold" href="https://www.chess.com/tournament/' + matchs[100+iGirone].nome + '/pairings" target=”_blank”>Girone ' + iGirone + '</a></td></tr>');
+        }
+
+        max = 1000;
+        for (var i in giocatori)
+        {
+            if ((giocatori[i].turni[1].girone == iGirone) && (giocatori[i].turni[1].daStampare) && (giocatori[i].turni[1].posizioneGruppo < max)) {
+                username = i;
+                max = giocatori[i].turni[1].posizioneGruppo;
+            }
+        }
+        if (max < 1000) 
+        {
+            giocatori[username].turni[1].daStampare = false;
+            //Stampo il giocatore
+            stampaGiocatoreTurno1(username);
+            
+        } else {
+            //Finito il calcolo di un girono
+            if (iGirone < maxGirone1) {
+                max = 999; //Devo calcolare girone successivo
+                iGirone++;
+                posizione = 0;
+            }
+
+        }
+    }
+
+    //Calcolo e stampo la classifica dei giocatori
      calcolaClassificaGiocatori();
 }
  
 function stampaGiocatoreTurno1(username)
 {
-    var stampaPosizione = '<a class="username" href="https://www.chess.com/tournament/' + matchs[giocatori[username].turni[1].match].nome + '/pairings" target=”_blank”>';
-    var posizioneRomana = '';
-    if (giocatori[username].turni[1].posizioneGruppo == 1) posizioneRomana = 'I';
-    if (giocatori[username].turni[1].posizioneGruppo == 2) posizioneRomana = 'II';
-    if (giocatori[username].turni[1].posizioneGruppo == 3) posizioneRomana = 'III';
-    if (giocatori[username].turni[1].posizioneGruppo == 4) posizioneRomana = 'IV';
-    if (giocatori[username].turni[1].posizioneGruppo == 5) posizioneRomana = 'V';
-    if (giocatori[username].turni[1].posizioneGruppo == 6) posizioneRomana = 'VI';
-    if (giocatori[username].turni[1].posizioneGruppo < 3 || nTerziQualificati < 4) {
-        stampaPosizione += '<img class="calvario-img" src="img/check.png">';
-        if (giocatori[username].turni[1].posizioneGruppo >= 3)
-        nTerziQualificati ++;
-    }
-    stampaPosizione +=  '<BR> <span style="font-size: 10px;">' + posizioneRomana + ' Gruppo ' + giocatori[username].turni[1].girone + '</span>';
+    var semaforo = '';
+    if (giocatori[username].turni[1].qualificato == 1)
+        semaforo +=  'verde.png'
+    if (giocatori[username].turni[1].qualificato == 2)
+        semaforo +=  'giallo.png'
+    if (giocatori[username].turni[1].qualificato == 3)
+        semaforo +=  'rosso.png'
 
     //stampo riga    
     $("#turno1").append('<tr class="classifica-giocatori">' +
-        '<td class="classifica-col1">' + stampaPosizione + '</td>' +  
+        '<td class="classifica-col1"><img class="classifica-avatar" src="img/' + semaforo + '"></td>' +  
         '<td class="giocatori-col1SEP"></td>' + 
         '<td class="classifica-col2">' +
         '    <table><tr>' +
