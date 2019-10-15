@@ -3,21 +3,21 @@ var calcolaClassificaRun = false;
 var nQualificati = 0;
 
 var matchs = [];
-/*matchs[101] = {"turno":1, "girone":1, "nome":"il-carosello-1deg-turno-girone-1", "daCaricare":true, "stampaPosizione" : 0};
+matchs[101] = {"turno":1, "girone":1, "nome":"il-carosello-1deg-turno-girone-1", "daCaricare":true, "stampaPosizione" : 0};
 matchs[102] = {"turno":1, "girone":2, "nome":"il-carosello-1deg-turno-girone-2", "daCaricare":true, "stampaPosizione" : 0};
 matchs[103] = {"turno":1, "girone":3, "nome":"il-carosello-1deg-turno-girone-3", "daCaricare":true, "stampaPosizione" : 0};
 matchs[104] = {"turno":1, "girone":4, "nome":"il-carosello-1deg-turno-girone-4", "daCaricare":true, "stampaPosizione" : 0};
 matchs[105] = {"turno":1, "girone":5, "nome":"il-carosello-1deg-turno-girone-5", "daCaricare":true, "stampaPosizione" : 0};
 matchs[106] = {"turno":1, "girone":6, "nome":"il-carosello-1deg-turno-girone-6", "daCaricare":true, "stampaPosizione" : 0};
-*/
 
+/*
 matchs[101] = {"turno":1, "girone":1, "nome":"il-calvario-stazione-n-1-gruppo-1", "daCaricare":true, "stampaPosizione" : 0};
 matchs[102] = {"turno":1, "girone":2, "nome":"il-calvario-stazione-n-1-gruppo-3", "daCaricare":true, "stampaPosizione" : 0};
 matchs[103] = {"turno":1, "girone":3, "nome":"il-calvario-stazione-n-1-gruppo-4", "daCaricare":true, "stampaPosizione" : 0};
 matchs[104] = {"turno":1, "girone":4, "nome":"il-calvario-stazione-n-1-gruppo-5", "daCaricare":true, "stampaPosizione" : 0};
 matchs[105] = {"turno":1, "girone":5, "nome":"il-calvario-stazione-n-1-gruppo-6", "daCaricare":true, "stampaPosizione" : 0};
 matchs[106] = {"turno":1, "girone":6, "nome":"il-calvario-stazione-n-1-gruppo-7", "daCaricare":true, "stampaPosizione" : 0};
-
+**/
 var maxGirone1 = 6;   //E' il numero dei gironi 
 
 //-------- DATA FINE TURNO ----
