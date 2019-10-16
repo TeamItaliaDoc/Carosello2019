@@ -363,7 +363,7 @@ function stampaGiocatoreTurno1(username)
     if (giocatori[username].turni[1].qualificato == 1)
         semaforo +=  'verde.png'
     if (giocatori[username].turni[1].qualificato == 2)
-        semaforo +=  'giallo.png'
+        semaforo +=  'verde.png'
     if (giocatori[username].turni[1].qualificato == 3)
         semaforo +=  'rosso.png'
 
