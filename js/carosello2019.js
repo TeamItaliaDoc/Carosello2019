@@ -2,7 +2,6 @@
 var calcolaClassificaRun = false;
 var nQualificati = 0;
 var fineTurno1 = new Date(2019,11,30,12,0,0,0); 
-//var fineTurno1 = new Date(2019,10,01,0,0,0,1); 
 
 var matchs = [];
 matchs[101] = {"turno":1, "girone":1, "nome":"il-carosello-1deg-turno-girone-1", "daCaricare":true, "stampaPosizione" : 0};
@@ -12,19 +11,13 @@ matchs[104] = {"turno":1, "girone":4, "nome":"il-carosello-1deg-turno-girone-4",
 matchs[105] = {"turno":1, "girone":5, "nome":"il-carosello-1deg-turno-girone-5", "daCaricare":true, "stampaPosizione" : 0};
 matchs[106] = {"turno":1, "girone":6, "nome":"il-carosello-1deg-turno-girone-6", "daCaricare":true, "stampaPosizione" : 0};
 
-/* 
-matchs[201] = {"turno":2, "girone":1, "nome":"il-carosello-1deg-turno-girone-1", "daCaricare":true, "stampaPosizione" : 0};
-matchs[202] = {"turno":2, "girone":2, "nome":"il-carosello-1deg-turno-girone-2", "daCaricare":true, "stampaPosizione" : 0};
-matchs[203] = {"turno":2, "girone":3, "nome":"il-carosello-1deg-turno-girone-3", "daCaricare":true, "stampaPosizione" : 0};
-matchs[204] = {"turno":2, "girone":4, "nome":"il-carosello-1deg-turno-girone-4", "daCaricare":true, "stampaPosizione" : 0};
-/* */
+matchs[201] = {"turno":2, "girone":1, "nome":"il-carosello-2deg-turno-girone-a", "daCaricare":true, "stampaPosizione" : 0};
+matchs[202] = {"turno":2, "girone":2, "nome":"il-carosello-2deg-turno-girone-b", "daCaricare":true, "stampaPosizione" : 0};
+matchs[203] = {"turno":2, "girone":3, "nome":"il-carosello-2deg-turno-girone-c", "daCaricare":true, "stampaPosizione" : 0};
+matchs[204] = {"turno":2, "girone":4, "nome":"il-carosello-2deg-turno-girone-d", "daCaricare":true, "stampaPosizione" : 0};
+
 var maxGirone1 = 6;   //E' il numero dei gironi 
 var maxGirone2 = 4;   //E' il numero dei gironi 
-
-//-------- DATA FINE TURNO ----
-//-------- DATA FINE TURNO ----
-//-------- DATA FINE TURNO ----
-//Classifica giocatori vale turno 3?
 
 //https://api.chess.com/pub/tournament/csp-inverno-2018-2019-girone-1/1/1
 
@@ -141,7 +134,6 @@ function setPuntiCarosello(username, turno, risultato, avversario) {
 //calcolo classifica del secondo turno
 function calcolaClassificaTurno2()
 {
-/* ?????????? RIPRISTINARE 
     var username = '';
     var max = 0;
     var maxSpareggio = 0;
@@ -151,6 +143,13 @@ function calcolaClassificaTurno2()
     var oldSpareggio = -1;  //Per evitare problemi se sono tutti a zero
     var iGirone = 1;
   
+    //Nei punti spareggio conto anche le vittorie del turno 1
+    for (var i in giocatori)
+    {
+        //Salvo spareggio per la stampa in colonna tie-break 
+        giocatori[i].turni[2].puntiSpareggioVittorie = giocatori[i].turni[2].puntiSpareggio * 100 + giocatori[i].turni[1].vinte;
+    }
+
     //Imposto posizione nel gruppo e salvo
     while (max > -1)
     {
@@ -158,10 +157,10 @@ function calcolaClassificaTurno2()
         maxSpareggio = -1;
         for (var i in giocatori)
         {
-            if ((giocatori[i].turni[2].girone == iGirone & giocatori[i].turni[2].posizioneGruppo == 0) & (giocatori[i].turni[2].punti > max || (giocatori[i].turni[2].punti == max) && giocatori[i].turni[2].puntiSpareggio > maxSpareggio)) {
+            if ((giocatori[i].turni[2].girone == iGirone & giocatori[i].turni[2].posizioneGruppo == 0) & (giocatori[i].turni[2].punti > max || (giocatori[i].turni[2].punti == max) && giocatori[i].turni[2].puntiSpareggioVittorie > maxSpareggio)) {
                 username = i;
                 max = giocatori[i].turni[2].punti;
-                maxSpareggio = giocatori[i].turni[2].puntiSpareggio;
+                maxSpareggio = giocatori[i].turni[2].puntiSpareggioVittorie;   //Considero anche le vittorie
             }
         }
         if (max > -1) 
@@ -235,7 +234,6 @@ function calcolaClassificaTurno2()
 
         }
     }
-*/
     //Calcolo e stampo la classifica dei giocatori
     calcolaClassificaTurno1();
 }
@@ -459,7 +457,7 @@ function stampaGiocatoreTurno1(username)
         '    </tr></table>' +
         '</td>' +
         '<td class="classifica-col3">' + giocatori[username].turni[1].punti +'</td>' +
-        '<td class="classifica-col3">' + giocatori[username].turni[1].puntiSpareggio +'</td>' +
+        '<td class="classifica-col3">' + giocatori[username].turni[1].puntiSpareggio + '</td>' +
         '<td class="classifica-col4"> <span class="game-win">' +  giocatori[username].turni[1].vinte + ' W</span> /'+
         '<span class="game-lost">' +  giocatori[username].turni[1].perse + ' L</span> /' +
         '<span class="game-draw">' +  giocatori[username].turni[1].patte + ' D</span>' +
@@ -494,7 +492,7 @@ function stampaGiocatoreTurno2(username)
         '    </tr></table>' +
         '</td>' +
         '<td class="classifica-col3">' + giocatori[username].turni[myTurno].punti +'</td>' +
-        '<td class="classifica-col3">' + giocatori[username].turni[myTurno].puntiSpareggio +'</td>' +
+        '<td class="classifica-col3">' + giocatori[username].turni[myTurno].puntiSpareggio + ' (' + giocatori[username].turni[1].vinte +')</td>' +
         '<td class="classifica-col4"> <span class="game-win">' +  giocatori[username].turni[myTurno].vinte + ' W</span> /'+
         '<span class="game-lost">' +  giocatori[username].turni[myTurno].perse + ' L</span> /' +
         '<span class="game-draw">' +  giocatori[username].turni[myTurno].patte + ' D</span>' +

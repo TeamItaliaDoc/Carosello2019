@@ -131,7 +131,9 @@ function creaGiocatore(apiUsername) {
         giocatori[username].turni[i].patte = 0;
         giocatori[username].turni[i].userVinte = [];
         giocatori[username].turni[i].userPatte = [];
-        }
+    }
+    //Solo turno 2
+    giocatori[username].turni[2].puntiSpareggioVittorie = 0;       
 }
 
 function setPunti(iTurno, username, risultato, avversario)
