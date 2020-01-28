@@ -16,6 +16,18 @@ matchs[202] = {"turno":2, "girone":2, "nome":"il-carosello-2deg-turno-girone-b",
 matchs[203] = {"turno":2, "girone":3, "nome":"il-carosello-2deg-turno-girone-c", "daCaricare":true, "stampaPosizione" : 0};
 matchs[204] = {"turno":2, "girone":4, "nome":"il-carosello-2deg-turno-girone-d", "daCaricare":true, "stampaPosizione" : 0};
 
+var tabellaFinali = [];
+var finali = [];
+//finali[41] = {"white" : {"username":"laszlo1977", "result":"lost"}, "black" : {"username":"capfracassa", "result":"win"},}
+//Se pari aggiungere un record con risulatato agreed, sarà valido solo per la classifica giocatori
+finali[41] = {"white" : {"username":"", "result":""}, "black" : {"username":"", "result":""},}
+finali[42] = {"white" : {"username":"", "result":""}, "black" : {"username":"", "result":""},}
+finali[43] = {"white" : {"username":"", "result":""}, "black" : {"username":"", "result":""},}
+finali[44] = {"white" : {"username":"", "result":""}, "black" : {"username":"", "result":""},}
+finali[21] = {"white" : {"username":"", "result":""}, "black" : {"username":"", "result":""},}
+finali[22] = {"white" : {"username":"", "result":""}, "black" : {"username":"", "result":""},}
+finali[11] = {"white" : {"username":"", "result":""}, "black" : {"username":"", "result":""},}
+
 var maxGirone1 = 6;   //E' il numero dei gironi 
 var maxGirone2 = 4;   //E' il numero dei gironi 
 
@@ -99,8 +111,8 @@ function caricaMatch(url)
             return;  
         calcolaClassificaRun = true;
 
-        //Ricerco elo e stampo classifica torneo / giocatori
-        getAvatar();
+        //Carico partite delle finali
+        caricaFinali();
     
     }).error(function(jqXhr, textStatus, error) {
         //è andato in errore ricarico i dati
@@ -123,6 +135,22 @@ function caricaMatch(url)
                 matchs[index].daCaricare = false;            }
               
         });
+}
+
+function caricaFinali()
+{
+    //assegno i punteggi delle finali
+    var i = 0
+    for (var i in finali) {
+        if (finali[i].white.result != '') {
+            //aggiorno punteggi
+            setPunti(3, finali[i].white.username.toLowerCase(), finali[i].white.result, finali[i].black.username);
+            setPunti(3, finali[i].black.username.toLowerCase(), finali[i].black.result, finali[i].white.username);
+        }
+    }        
+
+    //Ricerco elo e stampo classifica torneo / giocatori
+    getAvatar();
 }
 
 //Salva i punti del carosello
@@ -207,7 +235,7 @@ function calcolaClassificaTurno2()
     {
         //Stampo il girone
         if (max == 999) {
-            $("#turno2").append('<tr><td><a style="font-weight: bold" href="https://www.chess.com/tournament/' + matchs[100+iGirone].nome + '/pairings" target=”_blank”>Girone ' + iGirone + '</a></td></tr>');
+            $("#turno2").append('<tr><td><a style="font-weight: bold" href="https://www.chess.com/tournament/' + matchs[200+iGirone].nome + '/pairings" target=”_blank”>Girone ' + iGirone + '</a></td></tr>');
         }
 
         max = 1000;
@@ -241,29 +269,10 @@ function calcolaClassificaTurno2()
 //calcolo classifica del terzo turno
 function calcolaClassificaTurno3()
 {
-/*  
-    //Imposto posizione e salvo
-    var username = '';
-    var max = 0;
-    while (max > -1)
-    {
-        max = -1;
-        for (var i in giocatori)
-        {
-            if (!giocatori[i].stampaCalvario  && giocatori[i].puntiCalvario > max ) {
-                username = i;
-                max = giocatori[i].puntiCalvario;
-            }
-        }
-        if (max > -1) 
-        {
-            giocatori[username].stampaCalvario = stampaCalvario;
-            //Stampo il giocatore
-            stampaCalvario(username);
-        }
-     }
-*/    
-    //Calcolo e stampo la classifica del turno1
+    //Stampo la classifica della finale
+    stampaGiocatoreTurno3();
+
+    //Calcolo e stampo la classifica del turno2
     calcolaClassificaTurno2();
 }
 
@@ -336,8 +345,6 @@ function calcolaClassificaTurno1()
     oldMax = 0;
     oldSpareggio = -1;  //Per evitare problemi se sono tutti a zero
     iGirone = 1;
-    var maxQualificati = 0;
-    var maxQualificatiSpareggio = 0;
     while (max > -1)
     {
         max = -1;
@@ -499,4 +506,65 @@ function stampaGiocatoreTurno2(username)
         '</td>' +
         '</tr>'
     );
+}
+
+function stampaGiocatoreTurno3()
+{
+     //assegno i punteggi delle finali
+     var i = 0
+     for (var i in finali) {
+         //Preparo tabella per la stampa
+         if (finali[i].white.username != '') {
+             //Giocatore bianco
+             username = finali[i].white.username;
+             var semaforo = '';
+             if (finali[i].white.result == 'win') semaforo =  'verde.png'
+             else if (finali[i].white.result == 'lost') semaforo =  'rosso.png'
+             else semaforo =  'giallo.png';   
+              tabellaFinali[i] = '<td class="classifica-col1"><img class="classifica-avatar" src="img/' + semaforo + '"></td>' +  
+                    '<td class="giocatori-col1SEP"></td>' + 
+                     '<td class="classifica-col2-Finale">' +
+                     '    <table><tr>' +
+                     '        <td>' +
+                     '        <img class="classifica-avatar" src="' + giocatori[username].avatar + '">' +
+                     '    </td>' +
+                     '    <td width=7px></td>' +
+                     '    <td><div>' +
+                     '            <a class="username" href="' + giocatori[username].url + '" target=”_blank”> ' + giocatori[username].displayName + '</a>' +
+                     '        </div> <div>  (' + giocatori[username].elo + ') </div>' +
+                     '        </td>' +    
+                     '    </tr></table>' +
+                     '</td>';
+             //Giocatore nero
+             username = finali[i].black.username;
+             var semaforo = '';
+             if (finali[i].black.result == 'win') semaforo =  'verde.png'
+             else if (finali[i].black.result == 'lost') semaforo =  'rosso.png'
+             else semaforo =  'giallo.png';   
+             tabellaFinali[1+i] = '<td class="classifica-col1"><img class="classifica-avatar" src="img/' + semaforo + '"></td>' +  
+                   '<td class="giocatori-col1SEP"></td>' + 
+                    '<td class="classifica-col2-Finale">' +
+                    '    <table><tr>' +
+                    '        <td>' +
+                    '        <img class="classifica-avatar" src="' + giocatori[username].avatar + '">' +
+                    '    </td>' +
+                    '    <td width=7px></td>' +
+                    '    <td><div>' +
+                    '            <a class="username" href="' + giocatori[username].url + '" target=”_blank”> ' + giocatori[username].displayName + '</a>' +
+                    '        </div> <div>  (' + giocatori[username].elo + ') </div>' +
+                    '        </td>' +    
+                    '    </tr></table>' +
+                    '</td>';
+         }
+     }        
+
+     //Stampo la tabella
+     $("#finale").append('<tr class="classifica-giocatori">' +  tabellaFinali[41] + '<td></td><td></td><td></td><td></td><td></td><td></td>  </tr>');
+     $("#finale").append('<tr class="classifica-giocatori">' +  tabellaFinali[141] + tabellaFinali[21] + '<td></td><td></td><td></td>  </tr>');
+     $("#finale").append('<tr class="classifica-giocatori">' +  tabellaFinali[42] +  tabellaFinali[121] + '<td></td><td></td><td></td>  </tr>');
+     $("#finale").append('<tr class="classifica-giocatori">' +  tabellaFinali[142] + '<td></td><td></td><td></td>' +  tabellaFinali[11] + '  </tr>');
+     $("#finale").append('<tr class="classifica-giocatori">' +  tabellaFinali[43] + '<td></td><td></td><td></td>' +  tabellaFinali[111] + '  </tr>');
+     $("#finale").append('<tr class="classifica-giocatori">' +  tabellaFinali[143] + tabellaFinali[22] + '<td></td><td></td><td></td>  </tr>');
+     $("#finale").append('<tr class="classifica-giocatori">' +  tabellaFinali[43]  +  tabellaFinali[122] + '<td></td><td></td><td></td>  </tr>');
+     $("#finale").append('<tr class="classifica-giocatori">' +  tabellaFinali[143] + '<td></td><td></td><td></td><td></td><td></td><td></td>  </tr>');
 }
