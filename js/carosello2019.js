@@ -20,10 +20,10 @@ var tabellaFinali = [];
 var finali = [];
 //finali[41] = {"white" : {"username":"laszlo1977", "result":"lost"}, "black" : {"username":"capfracassa", "result":"win"},}
 //Se pari aggiungere un record con risulatato agreed, sarà valido solo per la classifica giocatori
-finali[41] = {"white" : {"username":"", "result":""}, "black" : {"username":"", "result":""},}
-finali[42] = {"white" : {"username":"", "result":""}, "black" : {"username":"", "result":""},}
-finali[43] = {"white" : {"username":"", "result":""}, "black" : {"username":"", "result":""},}
-finali[44] = {"white" : {"username":"", "result":""}, "black" : {"username":"", "result":""},}
+finali[41] = {"white" : {"username":"capfracassa", "result":""}, "black" : {"username":"tulpicanistan", "result":""},}
+finali[42] = {"white" : {"username":"lupo_rosso", "result":""}, "black" : {"username":"walmag", "result":""},}
+finali[43] = {"white" : {"username":"tizianoparriani", "result":""}, "black" : {"username":"themoonlightknight", "result":""},}
+finali[44] = {"white" : {"username":"kmoreteam", "result":""}, "black" : {"username":"vittoriagiuseppe", "result":""},}
 finali[21] = {"white" : {"username":"", "result":""}, "black" : {"username":"", "result":""},}
 finali[22] = {"white" : {"username":"", "result":""}, "black" : {"username":"", "result":""},}
 finali[11] = {"white" : {"username":"", "result":""}, "black" : {"username":"", "result":""},}
@@ -521,8 +521,8 @@ function stampaGiocatoreTurno3()
              if (finali[i].white.result == 'win') semaforo =  'verde.png'
              else if (finali[i].white.result == 'lost') semaforo =  'rosso.png'
              else semaforo =  'giallo.png';   
-              tabellaFinali[i] = '<td class="classifica-col1"><img class="classifica-avatar" src="img/' + semaforo + '"></td>' +  
-                    '<td class="giocatori-col1SEP"></td>' + 
+              tabellaFinali[i] = '<td class="classifica-col1"  ><img class="classifica-avatar" src="img/' + semaforo + '"></td>' +  
+                    '<td class="giocatori-col1SEP"  ></td>' + 
                      '<td class="classifica-col2-Finale">' +
                      '    <table><tr>' +
                      '        <td>' +
@@ -530,8 +530,8 @@ function stampaGiocatoreTurno3()
                      '    </td>' +
                      '    <td width=7px></td>' +
                      '    <td><div>' +
-                     '            <a class="username" href="' + giocatori[username].url + '" target=”_blank”> ' + giocatori[username].displayName + '</a>' +
-                     '        </div> <div>  (' + giocatori[username].elo + ') </div>' +
+                     '            <a class="username" style="border-bottom: 0px" href="' + giocatori[username].url + '" target=”_blank”> ' + giocatori[username].displayName + '</a>' +
+                     '        </div> <div style="text-align:left">  (' + giocatori[username].elo + ') </div>' +
                      '        </td>' +    
                      '    </tr></table>' +
                      '</td>';
@@ -541,9 +541,9 @@ function stampaGiocatoreTurno3()
              if (finali[i].black.result == 'win') semaforo =  'verde.png'
              else if (finali[i].black.result == 'lost') semaforo =  'rosso.png'
              else semaforo =  'giallo.png';   
-             tabellaFinali[1+i] = '<td class="classifica-col1"><img class="classifica-avatar" src="img/' + semaforo + '"></td>' +  
-                   '<td class="giocatori-col1SEP"></td>' + 
-                    '<td class="classifica-col2-Finale">' +
+             tabellaFinali[1+i] = '<td class="classifica-col1" style="border-bottom: 1px solid #ececec;"><img class="classifica-avatar" src="img/' + semaforo + '"></td>' +  
+                   '<td class="giocatori-col1SEP" style="border-bottom: 1px solid #ececec;"></td>' + 
+                    '<td class="classifica-col2-Finale" style="border-bottom: 1px solid #ececec;">' +
                     '    <table><tr>' +
                     '        <td>' +
                     '        <img class="classifica-avatar" src="' + giocatori[username].avatar + '">' +
@@ -551,7 +551,7 @@ function stampaGiocatoreTurno3()
                     '    <td width=7px></td>' +
                     '    <td><div>' +
                     '            <a class="username" href="' + giocatori[username].url + '" target=”_blank”> ' + giocatori[username].displayName + '</a>' +
-                    '        </div> <div>  (' + giocatori[username].elo + ') </div>' +
+                    '        </div> <div style="text-align:left">  (' + giocatori[username].elo + ') </div>' +
                     '        </td>' +    
                     '    </tr></table>' +
                     '</td>';
@@ -565,6 +565,6 @@ function stampaGiocatoreTurno3()
      $("#finale").append('<tr class="classifica-giocatori">' +  tabellaFinali[142] + '<td></td><td></td><td></td>' +  tabellaFinali[11] + '  </tr>');
      $("#finale").append('<tr class="classifica-giocatori">' +  tabellaFinali[43] + '<td></td><td></td><td></td>' +  tabellaFinali[111] + '  </tr>');
      $("#finale").append('<tr class="classifica-giocatori">' +  tabellaFinali[143] + tabellaFinali[22] + '<td></td><td></td><td></td>  </tr>');
-     $("#finale").append('<tr class="classifica-giocatori">' +  tabellaFinali[43]  +  tabellaFinali[122] + '<td></td><td></td><td></td>  </tr>');
-     $("#finale").append('<tr class="classifica-giocatori">' +  tabellaFinali[143] + '<td></td><td></td><td></td><td></td><td></td><td></td>  </tr>');
+     $("#finale").append('<tr class="classifica-giocatori">' +  tabellaFinali[44]  +  tabellaFinali[122] + '<td></td><td></td><td></td>  </tr>');
+     $("#finale").append('<tr class="classifica-giocatori">' +  tabellaFinali[144] + '<td></td><td></td><td></td><td></td><td></td><td></td>  </tr>');
 }

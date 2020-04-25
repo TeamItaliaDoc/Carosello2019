@@ -245,6 +245,10 @@
     color: #312e2b;
     width:950px; 
 }
+.classifica-giocatori-no-bordi
+{
+    border-bottom: 0px;
+}
 .classifica-giocatori
 {
     border-right: 0;
@@ -254,7 +258,7 @@
     font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif;
     font-size: 14px;
     text-align: right;
-    border-bottom: 1px solid #ececec;
+    /*border-bottom: 0px solid #ececec;*/
     width: 1000;
     border-collapse: collapse
 }
