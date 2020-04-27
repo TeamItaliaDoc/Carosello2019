@@ -22,7 +22,7 @@ var finali = [];
 //Se pari aggiungere un record con risulatato agreed, sarà valido solo per la classifica giocatori
 finali[41] = {"white" : {"username":"capfracassa", "result":""}, "black" : {"username":"tulpicanistan", "result":""},}
 finali[42] = {"white" : {"username":"lupo_rosso", "result":""}, "black" : {"username":"walmag", "result":""},}
-finali[43] = {"white" : {"username":"tizianoparriani", "result":""}, "black" : {"username":"themoonlightknight", "result":""},}
+finali[43] = {"white" : {"username":"tizianoparriani", "result":""}, "black" : {"username":"fedegiu", "result":""},}
 finali[44] = {"white" : {"username":"kmoreteam", "result":""}, "black" : {"username":"vittoriagiuseppe", "result":""},}
 finali[21] = {"white" : {"username":"", "result":""}, "black" : {"username":"", "result":""},}
 finali[22] = {"white" : {"username":"", "result":""}, "black" : {"username":"", "result":""},}
