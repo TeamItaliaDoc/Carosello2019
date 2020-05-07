@@ -22,10 +22,10 @@ var finali = [];
 //Se pari aggiungere un record con risulatato agreed, sarà valido solo per la classifica giocatori
 finali[41] = {"white" : {"username":"capfracassa", "result":"win"}, "black" : {"username":"tizianoparriani", "result":"lost"}, "url":"https://www.chess.com/live?#g=4784474092"}
 finali[42] = {"white" : {"username":"tulpicanistan", "result":"win"}, "black" : {"username":"fedegiu", "result":"lost"}, "url":"https://www.chess.com/live/game/4791817961"}
-finali[43] = {"white" : {"username":"lupo_rosso", "result":""}, "black" : {"username":"kmoreteam", "result":""}, "url":""}
-finali[44] = {"white" : {"username":"walmag", "result":""}, "black" : {"username":"vittoriagiuseppe", "result":""}, "url":""}
+finali[43] = {"white" : {"username":"lupo_rosso", "result":"lost"}, "black" : {"username":"kmoreteam", "result":"win"}, "url":""}
+finali[44] = {"white" : {"username":"walmag", "result":"lost"}, "black" : {"username":"vittoriagiuseppe", "result":"win"}, "url":""}
 finali[21] = {"white" : {"username":"capfracassa", "result":""}, "black" : {"username":"tulpicanistan", "result":""}, "url":""}
-finali[22] = {"white" : {"username":"", "result":""}, "black" : {"username":"", "result":""}, "url":""}
+finali[22] = {"white" : {"username":"kmoreteam", "result":""}, "black" : {"username":"vittoriagiuseppe", "result":""}, "url":""}
 finali[11] = {"white" : {"username":"", "result":""}, "black" : {"username":"", "result":""}, "url":""}
 
 var maxGirone1 = 6;   //E' il numero dei gironi 
