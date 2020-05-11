@@ -233,6 +233,17 @@
     cursor: pointer;
     background-color: transparent;
 }
+.finale
+{
+    text-align: left;
+    text-decoration: none;  
+    font-weight: 600;
+    color: #005e94;
+    vertical-align: middle;
+    touch-action: manipulation;
+    cursor: pointer;
+    background-color: transparent;
+}
 /* TABELLA GIRONI */
 .gironi-tabella
 {

@@ -24,9 +24,10 @@ finali[41] = {"white" : {"username":"capfracassa", "result":"win"}, "black" : {"
 finali[42] = {"white" : {"username":"tulpicanistan", "result":"win"}, "black" : {"username":"fedegiu", "result":"lost"}, "url":"https://www.chess.com/live/game/4791817961"}
 finali[43] = {"white" : {"username":"lupo_rosso", "result":"lost"}, "black" : {"username":"kmoreteam", "result":"win"}, "url":""}
 finali[44] = {"white" : {"username":"walmag", "result":"lost"}, "black" : {"username":"vittoriagiuseppe", "result":"win"}, "url":""}
-finali[21] = {"white" : {"username":"capfracassa", "result":""}, "black" : {"username":"tulpicanistan", "result":""}, "url":""}
+finali[21] = {"white" : {"username":"capfracassa", "result":"win"}, "black" : {"username":"tulpicanistan", "result":"lost"}, "url":""}
 finali[22] = {"white" : {"username":"kmoreteam", "result":""}, "black" : {"username":"vittoriagiuseppe", "result":""}, "url":""}
-finali[11] = {"white" : {"username":"", "result":""}, "black" : {"username":"", "result":""}, "url":""}
+finali[11] = {"white" : {"username":"capfracassa", "result":""}, "black" : {"username":"", "result":""}, "url":""}
+finali[12] = {"white" : {"username":"tulpicanistan", "result":""}, "black" : {"username":"", "result":""}, "url":""}
 
 var maxGirone1 = 6;   //E' il numero dei gironi 
 var maxGirone2 = 4;   //E' il numero dei gironi 
@@ -525,7 +526,7 @@ function stampaGiocatoreTurno3()
                  semaforo = '<img class="classifica-avatar" src="img/' + semaforo + '">';
                  if (finali[i].url != '')
                     semaforo = '<a href="' + finali[i].url + '" target=”_blank”>' + semaforo +'</a>';
-                    tabellaFinali[i] = '<td class="classifica-col1" style="border-bottom: 1px solid #ececec;"> ' + semaforo + '</td>' +  
+                    tabellaFinali[i] = '<td class="classifica-col1" > ' + semaforo + '</td>' +  
                     '<td class="giocatori-col1SEP"  ></td>' + 
                          '<td class="classifica-col2-Finale">' +
                          '    <table><tr>' +
@@ -570,11 +571,11 @@ function stampaGiocatoreTurno3()
 
      //Stampo la tabella
      $("#finale").append('<tr class="classifica-giocatori">' +  tabellaFinali[41] + '<td></td><td></td><td></td><td></td><td></td><td></td>  </tr>');
-     $("#finale").append('<tr class="classifica-giocatori">' +  tabellaFinali[141] + tabellaFinali[21] + '<td></td><td></td><td></td>  </tr>');
-     $("#finale").append('<tr class="classifica-giocatori">' +  tabellaFinali[42] +  tabellaFinali[121] + '<td></td><td></td><td></td>  </tr>');
-     $("#finale").append('<tr class="classifica-giocatori">' +  tabellaFinali[142] + '<td></td><td></td><td></td>' +  tabellaFinali[11] + '  </tr>');
-     $("#finale").append('<tr class="classifica-giocatori">' +  tabellaFinali[43] + '<td></td><td></td><td></td>' +  tabellaFinali[111] + '  </tr>');
-     $("#finale").append('<tr class="classifica-giocatori">' +  tabellaFinali[143] + tabellaFinali[22] + '<td></td><td></td><td></td>  </tr>');
-     $("#finale").append('<tr class="classifica-giocatori">' +  tabellaFinali[44]  +  tabellaFinali[122] + '<td></td><td></td><td></td>  </tr>');
-     $("#finale").append('<tr class="classifica-giocatori">' +  tabellaFinali[144] + '<td></td><td></td><td></td><td></td><td></td><td></td>  </tr>');
+     $("#finale").append('<tr class="classifica-giocatori">' +  tabellaFinali[141] + tabellaFinali[21] + '<td></td><td></td><td class="finale">Finale I - II posto</td> </tr>');
+     $("#finale").append('<tr class="classifica-giocatori">' +  tabellaFinali[42] +  tabellaFinali[121] +  tabellaFinali[11] + '  </tr>');
+     $("#finale").append('<tr class="classifica-giocatori">' +  tabellaFinali[142] + '<td></td><td></td><td></td>' +  tabellaFinali[111] + ' </tr>');
+     $("#finale").append('<tr class="classifica-giocatori">' +  tabellaFinali[43] + '<td></td><td></td><td></td> </tr>');
+     $("#finale").append('<tr class="classifica-giocatori">' +  tabellaFinali[143] + tabellaFinali[22] + '<td></td><td><td class="finale">Finale III - VI posto</td>  </tr>');
+     $("#finale").append('<tr class="classifica-giocatori">' +  tabellaFinali[44]  +  tabellaFinali[122] + tabellaFinali[12] + '  </tr>');
+     $("#finale").append('<tr class="classifica-giocatori">' +  tabellaFinali[144] + '<td></td><td></td><td></td>' + tabellaFinali[112] + ' </tr>');
 }
