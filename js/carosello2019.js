@@ -26,7 +26,7 @@ finali[43] = {"white" : {"username":"lupo_rosso", "result":"lost"}, "black" : {"
 finali[44] = {"white" : {"username":"walmag", "result":"lost"}, "black" : {"username":"vittoriagiuseppe", "result":"win"}, "url":""}
 finali[21] = {"white" : {"username":"capfracassa", "result":"win"}, "black" : {"username":"tulpicanistan", "result":"lost"}, "url":""}
 finali[22] = {"white" : {"username":"kmoreteam", "result":"lost"}, "black" : {"username":"vittoriagiuseppe", "result":"win"}, "url":""}
-finali[11] = {"white" : {"username":"capfracassa", "result":""}, "black" : {"username":"vittoriagiuseppe", "result":""}, "url":""}
+finali[11] = {"white" : {"username":"vittoriagiuseppe", "result":""}, "black" : {"username":"capfracassa", "result":""}, "url":""}
 finali[12] = {"white" : {"username":"tulpicanistan", "result":""}, "black" : {"username":"kmoreteam", "result":""}, "url":""}
 
 var maxGirone1 = 6;   //E' il numero dei gironi 
@@ -575,7 +575,7 @@ function stampaGiocatoreTurno3()
      $("#finale").append('<tr class="classifica-giocatori">' +  tabellaFinali[42] +  tabellaFinali[121] +  tabellaFinali[11] + '  </tr>');
      $("#finale").append('<tr class="classifica-giocatori">' +  tabellaFinali[142] + '<td></td><td></td><td></td>' +  tabellaFinali[111] + ' </tr>');
      $("#finale").append('<tr class="classifica-giocatori">' +  tabellaFinali[43] + '<td></td><td></td><td></td> </tr>');
-     $("#finale").append('<tr class="classifica-giocatori">' +  tabellaFinali[143] + tabellaFinali[22] + '<td></td><td><td class="finale">Finale III - VI posto</td>  </tr>');
+     $("#finale").append('<tr class="classifica-giocatori">' +  tabellaFinali[143] + tabellaFinali[22] + '<td></td><td><td class="finale">Finale III - IV posto</td>  </tr>');
      $("#finale").append('<tr class="classifica-giocatori">' +  tabellaFinali[44]  +  tabellaFinali[122] + tabellaFinali[12] + '  </tr>');
      $("#finale").append('<tr class="classifica-giocatori">' +  tabellaFinali[144] + '<td></td><td></td><td></td>' + tabellaFinali[112] + ' </tr>');
 }
