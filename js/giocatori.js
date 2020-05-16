@@ -27,6 +27,11 @@ function getAvatarUrl(url)
         giocatori[dataAvatar.username].url = dataAvatar.url;
         giocatori[dataAvatar.username].displayName = dataAvatar.url.substr(29, dataAvatar.url.length-29);
 
+        //Se è bannato lo considero già stampato
+        if (dataAvatar.status == 'closed:fair_play_violations') {
+            giocatori[dataAvatar.username].posizione = 999;
+        }
+
         //Se non ho caricato tuti gli avatar esengo ancora la funzione
         for (var username in giocatori) {
             if (! giocatori[username].avatar) {
