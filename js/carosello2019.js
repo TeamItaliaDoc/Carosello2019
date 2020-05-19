@@ -26,8 +26,8 @@ finali[43] = {"white" : {"username":"lupo_rosso", "result":"lost"}, "black" : {"
 finali[44] = {"white" : {"username":"walmag", "result":"lost"}, "black" : {"username":"vittoriagiuseppe", "result":"win"}, "url":""}
 finali[21] = {"white" : {"username":"capfracassa", "result":"win"}, "black" : {"username":"tulpicanistan", "result":"lost"}, "url":""}
 finali[22] = {"white" : {"username":"kmoreteam", "result":"lost"}, "black" : {"username":"vittoriagiuseppe", "result":"win"}, "url":""}
-finali[11] = {"white" : {"username":"vittoriagiuseppe", "result":""}, "black" : {"username":"capfracassa", "result":""}, "url":""}
-finali[12] = {"white" : {"username":"tulpicanistan", "result":""}, "black" : {"username":"kmoreteam", "result":""}, "url":""}
+finali[11] = {"white" : {"username":"vittoriagiuseppe", "result":"lost"}, "black" : {"username":"capfracassa", "result":"win"}, "url":"https://www.chess.com/live/game/4879252587"}
+finali[12] = {"white" : {"username":"tulpicanistan", "result":"win"}, "black" : {"username":"kmoreteam", "result":"lost"}, "url":"https://www.chess.com/it/live/game/4874197998"}
 
 var maxGirone1 = 6;   //E' il numero dei gironi 
 var maxGirone2 = 4;   //E' il numero dei gironi 
